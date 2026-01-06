@@ -1,0 +1,106 @@
+/* block */
+.#{$block-selector} {
+    margin-bottom: $block-module-margin-bottom;
+    position: relative;
+    padding: $block-module-padding;
+    background: transparent;
+    .wc-blocks-filter-wrapper > h3,
+    .wp-block-group__inner-container > h1,
+    .wp-block-group__inner-container > h2,
+    .wp-block-group__inner-container > h3,
+    .wp-block-group__inner-container > h4,
+    .wp-block-group__inner-container > h5,
+    .wp-block-group__inner-container > h6{
+        margin:0 0 15px;
+        @media(min-width: 1200px){
+            margin-bottom: 22px;
+        }
+        text-transform: capitalize;
+        + ul{
+            margin: 0;
+            padding-left: 0;
+            li{
+                list-style: none;
+                margin-bottom: 10px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                > a{
+                    &:before{
+                        content: '';
+                        @include size(10px,2px);
+                        background: currentColor;
+                        display: inline-block;
+                        @include transition(all 0.2s ease-in-out 0s);
+                        margin-right: 10px;
+                        vertical-align: middle;
+                    }
+                }
+                &:hover > a,
+                &.current-cat-parent > a,
+                &.current-cat > a{
+                    color: $third-color;
+                    &:before{
+                        width: 15px;
+                    }
+                }
+            }
+        }
+    }
+    .wc-blocks-filter-wrapper > h3,
+    .wp-block-group__inner-container > h2{
+        font-size: 19px;
+    }
+    .#{$block-heading-selector}{
+        font-size: 19px;
+        margin:0 0 15px;
+        text-transform: capitalize;
+        @media(min-width: 1200px){
+            margin-bottom: 22px;
+        }
+        .urgent,
+        .featured{
+            font-size: 0.75rem;
+        }
+    }
+}
+// Sidebar
+.sidebar,
+.#{$app-prefix}-sidebar {
+    .widget{
+        margin: 0 0 20px;
+        padding: $theme-margin / 2;
+        background-color: #F9F9F9;
+        border: 1px solid $border-color;
+        @include border-radius($border-radius);
+        @media(min-width: 1200px){
+            @include border-radius($border-radius-lg);
+            padding: $theme-margin;
+            margin-bottom: $theme-margin;
+        }
+        .wp-block-tag-cloud a{
+            background: #fff;
+            &:hover,&:focus,&.active{
+                color: $third-color;
+            }
+        }
+    }
+}
+aside.widget{
+    margin: 0 0 20px;
+    padding: $theme-margin / 2;
+    background-color: #F9F9F9;
+    border: 1px solid $border-color;
+    @include border-radius($border-radius);
+    @media(min-width: 1200px){
+        @include border-radius($border-radius-lg);
+        padding: $theme-margin;
+        margin-bottom: $theme-margin;
+    }
+    .wp-block-tag-cloud a{
+        background: #fff;
+        &:hover,&:focus,&.active{
+            color: $third-color;
+        }
+    }
+}
