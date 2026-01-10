@@ -245,8 +245,18 @@
 .ti-angle-right:before {
 	content: "\e649";
 }
+.rtl .pagination .ti-angle-right:before,
+.rtl .navigation .ti-angle-right:before,
+.rtl .slick-carousel .ti-angle-right:before{
+	content: "\e64a";
+}
 .ti-angle-left:before {
 	content: "\e64a";
+}
+.rtl .pagination .ti-angle-left:before,
+.rtl .navigation .ti-angle-left:before,
+.rtl .slick-carousel .ti-angle-left:before{
+	content: "\e649";
 }
 .ti-angle-down:before {
 	content: "\e64b";
