@@ -42,7 +42,7 @@ do_action( 'wp_realestate_before_property_content', $post_id );
                     <?php echo trim( $labels ); ?>
                 </div>
             <?php endif; ?>
-
+			
             <!-- Bottom price + actions -->
             <div class="bottom-label flex-middle">
                 <?php
@@ -53,7 +53,7 @@ do_action( 'wp_realestate_before_property_content', $post_id );
 
                 <div class="ali-right">
                     <?php
-                    if ( function_exists('homeo_get_config') && homeo_get_config( 'listing_enable_favorite', true ) ) {
+                    /* if ( function_exists('homeo_get_config') && homeo_get_config( 'listing_enable_favorite', true ) ) {
                         if ( class_exists( 'WP_RealEstate_Favorite' ) ) {
                             WP_RealEstate_Favorite::display_favorite_btn( $post_id );
                         }
@@ -66,7 +66,7 @@ do_action( 'wp_realestate_before_property_content', $post_id );
                                 'add_icon_class'   => 'flaticon-transfer-1',
                             ));
                         }
-                    }
+                    } */
                     ?>
                 </div>
             </div>
@@ -104,18 +104,28 @@ do_action( 'wp_realestate_before_property_content', $post_id );
 
                 $meta_obj = WP_RealEstate_Property_Meta::get_instance( $post_id );
 
-                $suffix   = function_exists('wp_realestate_get_option') ? wp_realestate_get_option( 'measurement_unit_area' ) : '';
-                $beds     = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ) . ':' ) : '';
-                $baths    = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ) . ':' ) : '';
-                $lot_area = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'lot_area', '', $suffix ? $suffix . ':' : '' ) : '';
+//                 $suffix   = function_exists('wp_realestate_get_option') ? wp_realestate_get_option( 'measurement_unit_area' ) : '';
+//                 $beds     = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ) . ':' ) : '';
+//                 $baths    = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ) . ':' ) : '';
+//                 $lot_area = function_exists('homeo_property_display_meta') ? homeo_property_display_meta( $post, 'lot_area', '', $suffix ? $suffix . ':' : '' ) : '';
 
+		$lot_area = homeo_property_display_meta($post, 'lot_area');
+		$beds = homeo_property_display_meta($post, 'beds');
+		$baths = homeo_property_display_meta($post, 'baths');
+		
                 if ( $beds || $baths || $lot_area ) :
                 ?>
                     <div class="property-metas flex-middle flex-wrap">
                         <?php
-                        echo trim( $beds );
-                        echo trim( $baths );
-                        echo trim( $lot_area );
+				if(!empty($beds)) {                            
+                        	echo trim('<i class="flaticon-hotel" style="margin-right: 5px;"></i> '.$beds);
+				}
+				if(!empty($baths)) {                            
+                        	echo trim('<i class="flaticon-bathtub" style="margin-right: 5px;"></i> '.$baths);
+				}
+				if(!empty($lot_area)) {                            
+                        	echo trim('<i class="flaticon-minus-front" style="margin-right: 5px;"></i> '.$lot_area);
+				}
                         ?>
                     </div>
                 <?php endif;

@@ -6,11 +6,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
 
-$suffix = wp_realestate_get_option('measurement_unit_area');
-$lot_area = homeo_property_display_meta($post, 'lot_area', '', '', $suffix);
-$beds = homeo_property_display_meta($post, 'beds', '',$meta_obj->get_post_meta_title( 'beds' ).':' );
-$baths = homeo_property_display_meta($post, 'baths', '',$meta_obj->get_post_meta_title( 'baths' ).':' );
+// $suffix = wp_realestate_get_option('measurement_unit_area');
+// $lot_area = homeo_property_display_meta($post, 'lot_area', '', '', $suffix);
+// $beds = homeo_property_display_meta($post, 'beds', '',$meta_obj->get_post_meta_title( 'beds' ).':' );
+// $baths = homeo_property_display_meta($post, 'baths', '',$meta_obj->get_post_meta_title( 'baths' ).':' );
 $type = homeo_property_display_type($post,'',false);
+
+
+$bed_icon  = 'flaticon-hotel';
+$bath_icon = 'flaticon-bathtub';
+$size_icon = 'flaticon-minus-front';
+
+$lot_area = homeo_property_display_meta($post, 'lot_area', $size_icon);
+$beds = homeo_property_display_meta($post, 'beds', $bed_icon);
+$baths = homeo_property_display_meta($post, 'baths', $bath_icon);
+
+			
 ?>
 <div class="description inner">
 	<?php if( !empty($type) || !empty($beds) || !empty($baths) || !empty($lot_area)  ){ ?>

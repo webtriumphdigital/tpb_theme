@@ -5,10 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
 
-$suffix = wp_realestate_get_option('measurement_unit_area');
-$lot_area = homeo_property_display_meta($post, 'lot_area', '', '', $suffix.':');
-$beds = homeo_property_display_meta($post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ).':');
-$baths = homeo_property_display_meta($post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ).':');
+// $suffix = wp_realestate_get_option('measurement_unit_area');
+// $lot_area = homeo_property_display_meta($post, 'lot_area', '', '', $suffix.':');
+// $beds = homeo_property_display_meta($post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ).':');
+// $baths = homeo_property_display_meta($post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ).':');
+
+$lot_area = homeo_property_display_meta($post, 'lot_area');
+$beds = homeo_property_display_meta($post, 'beds');
+$baths = homeo_property_display_meta($post, 'baths');
 ?>
 <article <?php post_class('property-list-simple'); ?>>
     <div class="flex-middle">
@@ -20,9 +24,15 @@ $baths = homeo_property_display_meta($post, 'baths', '', $meta_obj->get_post_met
             <?php homeo_property_display_price($post, 'no-icon-title', true); ?>
             <div class="property-metas">
                 <?php 
-                    echo trim($beds);
-                    echo trim($baths);
-                    echo trim($lot_area);
+                    if(!empty($beds)) {                            
+                        	echo trim('<i class="flaticon-hotel" style="margin-right: 5px;"></i> '.$beds);
+				}
+				if(!empty($baths)) {                            
+                        	echo trim('<i class="flaticon-bathtub" style="margin-right: 5px;"></i> '.$baths);
+				}
+				if(!empty($lot_area)) {                            
+                        	echo trim('<i class="flaticon-minus-front" style="margin-right: 5px;"></i> '.$lot_area);
+				}
                 ?>
             </div>
         </div>

@@ -29,7 +29,7 @@ global $post;
                 <?php homeo_property_display_price($post, 'no-icon-title', true); ?>
                 <div class="ali-right">
                     <?php
-                        if ( homeo_get_config('listing_enable_favorite', true) ) {
+                        /* if ( homeo_get_config('listing_enable_favorite', true) ) {
                             WP_RealEstate_Favorite::display_favorite_btn($post->ID);
                         }
                         if ( homeo_get_config('listing_enable_compare', true) ) {
@@ -38,7 +38,7 @@ global $post;
                                 'add_icon_class' => 'flaticon-transfer-1',
                             );
                             WP_RealEstate_Compare::display_compare_btn($post->ID, $args);
-                        }
+                        } */
                     ?>
                 </div>
             </div>
@@ -48,40 +48,42 @@ global $post;
         	<?php homeo_property_display_type($post, 'no-icon-title', true); ?>
 
     		<?php the_title( sprintf( '<h2 class="property-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-            <?php homeo_property_display_full_location($post, 'icon'); ?>
+            
+			<span style="display: flex; gap: 5px; align-items: center;">
+				<i class="flaticon-location-pin"></i>
+				<?php homeo_property_display_full_location($post); ?>
+			</span>
 
             <?php
             $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
             
             $suffix = wp_realestate_get_option('measurement_unit_area');
-            $lot_area = homeo_property_display_meta($post, 'lot_area', '', $suffix.':');
-            $beds = homeo_property_display_meta($post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ).':');
-            $baths = homeo_property_display_meta($post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ).':');
+//             $lot_area = homeo_property_display_meta($post, 'lot_area', '', $suffix.':');
+//             $beds = homeo_property_display_meta($post, 'beds', '', $meta_obj->get_post_meta_title( 'beds' ).':');
+//             $baths = homeo_property_display_meta($post, 'baths', '', $meta_obj->get_post_meta_title( 'baths' ).':');
 
+			$lot_area = homeo_property_display_meta($post, 'lot_area');
+            $beds = homeo_property_display_meta($post, 'beds');
+            $baths = homeo_property_display_meta($post, 'baths');
+			
             if ( $lot_area || $beds || $baths ) {
             ?>
                 <div class="property-metas flex-middle flex-wrap">
                     <?php
-                        echo trim($beds);
-                        echo trim($baths);
-                        echo trim($lot_area);
+						if(!empty($beds)) {							
+                        	echo trim('<i class="flaticon-hotel" style="margin-right: 5px;"></i> '.$beds);
+						}
+						if(!empty($baths)) {							
+                        	echo trim('<i class="flaticon-bathtub" style="margin-right: 5px;"></i> '.$baths);
+						}
+						if(!empty($lot_area)) {							
+                        	echo trim('<i class="flaticon-minus-front" style="margin-right: 5px;"></i> '.$lot_area);
+						}
                     ?>
                 </div>
             <?php } ?>
     	</div>
     </div>
-    <?php
-        $postdate = homeo_property_display_postdate($post, 'no-icon-title', 'ago', false);
-        $author = homeo_property_display_author($post, 'logo', false);
-        if ( $postdate || $author ) {
-    ?>
-        <div class="property-metas-bottom flex-middle">
-            <?php echo trim($author); ?>
-            <div class="ali-right">
-                <?php echo trim($postdate); ?>
-            </div>
-        </div>
-    <?php } ?>
 </article><!-- #post-## -->
 
 <?php do_action( 'wp_realestate_after_property_content', $post->ID ); ?>

@@ -15,10 +15,9 @@ if( ! class_exists( 'Homeo_Elementor_Extensions' ) ) {
             add_action( 'init', array( $this, 'elementor_widgets' ),  100 );
             add_filter( 'homeo_generate_post_builder', array( $this, 'render_post_builder' ), 10, 2 );
 
-            add_action( 'elementor/controls/controls_registered', array( $this, 'modify_controls' ), 10, 1 );
-            add_action('elementor/editor/before_enqueue_styles', array( $this, 'style' ) );
-            
             add_filter( 'elementor/icons_manager/additional_tabs', array( $this, 'custom_icons' ) );
+
+            add_action('elementor/editor/before_enqueue_styles', array( $this, 'style' ) );
         }
 
         public static function instance () {
@@ -108,55 +107,44 @@ if( ! class_exists( 'Homeo_Elementor_Extensions' ) ) {
                 get_template_part( 'inc/vendors/elementor/wp-private-message-widgets/header-notification' );
             }
         }
-
-        public function custom_icons($icons_args = array()) {
-            $flaticon_icons = array(
-                'user', 'phone', 'magnifiying-glass', 'filter', 'arrow-down-sign-to-navigate', 'location', 'hotel', 'bath-tub', 'bathtub', 'minus-front', 'heart', 'heart-1', 'search-house', 'seller', 'buy-home', 'website', 'computer', 'house', 'rating', 'customer', 'house-1', 'shield', 'home', 'online-meeting', 'key', 'rental', 'play', 'twitter', 'linkedin', 'facebook', 'instagram', 'bungalow', 'cottage', 'buildings', 'building', 'office-building', 'check', 'paper-plane', 'message', 'pdf', 'tag', 'star', 'star-1', 'walk', 'bike', 'gallery', 'buildings-1', 'building-1', 'city', 'drill', 'hammer', 'garage', 'tools-and-utensils', 'before-after', 'share', 'outbox', 'compare', 'calendar', 'whatsapp', 'chat-bubble', 'comment', 'home-1', 'house-3', 'house-4', 'home-2', 'plus', 'home-3', 'home-4', 'layers', 'padlock', 'logout', 'layers-1', 'find', 'upload', 'file', 'upload-1', 'delete', 'edit', 'location-1', 'video-chat', 'location-pin', 'close', 'google', 'time', 'high-five', 'profit', 'house-2', 'magnifying-glass', 'maps-and-flags'
-            );
-
-            $icons_args['homeo-flaticon-icon'] = array(
-                'name'          => 'homeo-flaticon-icon',
-                'label'         => esc_html__( 'Flaticon Icon', 'homeo' ),
-                'labelIcon'     => 'fas fa-user',
-                'prefix'        => 'flaticon-',
-                'displayPrefix' => 'flaticon-',
-                'url'           => get_template_directory_uri() . '/css/flaticon.css',
-                'icons'         => $flaticon_icons,
-                'ver'           => HOMEO_THEME_VERSION,
-            );
-
-            $themify_icons = array(
-                'volume', 'user', 'unlock', 'unlink', 'trash', 'thought', 'target', 'tag', 'tablet', 'star', 'spray', 'signal', 'shopping-cart', 'shopping-cart-full', 'settings', 'search', 'zoom-in', 'zoom-out', 'cut', 'ruler', 'ruler-pencil', 'ruler-alt', 'bookmark', 'bookmark-alt', 'reload', 'plus', 'pin', 'pencil', 'pencil-alt', 'paint-roller', 'paint-bucket', 'na', 'mobile', 'minus', 'medall', 'medall-alt', 'marker', 'marker-alt', 'arrow-up', 'arrow-right', 'arrow-left', 'arrow-down', 'lock', 'location-arrow', 'link', 'layout', 'layers', 'layers-alt', 'key', 'import', 'image', 'heart', 'heart-broken', 'hand-stop', 'hand-open', 'hand-drag', 'folder', 'flag', 'flag-alt', 'flag-alt-2', 'eye', 'export', 'exchange-vertical', 'desktop', 'cup', 'crown', 'comments', 'comment', 'comment-alt', 'close', 'clip', 'angle-up', 'angle-right', 'angle-left', 'angle-down', 'check', 'check-box', 'camera', 'announcement', 'brush', 'briefcase', 'bolt', 'bolt-alt', 'blackboard', 'bag', 'move', 'arrows-vertical', 'arrows-horizontal', 'fullscreen', 'arrow-top-right', 'arrow-top-left', 'arrow-circle-up', 'arrow-circle-right', 'arrow-circle-left', 'arrow-circle-down', 'angle-double-up', 'angle-double-right', 'angle-double-left', 'angle-double-down', 'zip', 'world', 'wheelchair', 'view-list', 'view-list-alt', 'view-grid', 'uppercase', 'upload', 'underline', 'truck', 'timer', 'ticket', 'thumb-up', 'thumb-down', 'text', 'stats-up', 'stats-down', 'split-v', 'split-h', 'smallcap', 'shine', 'shift-right', 'shift-left', 'shield', 'notepad', 'server', 'quote-right', 'quote-left', 'pulse', 'printer', 'power-off', 'plug', 'pie-chart', 'paragraph', 'panel', 'package', 'music', 'music-alt', 'mouse', 'mouse-alt', 'money', 'microphone', 'menu', 'menu-alt', 'map', 'map-alt', 'loop', 'location-pin', 'list', 'light-bulb', 'talic', 'info', 'infinite', 'id-badge', 'hummer', 'home', 'help', 'headphone', 'harddrives', 'harddrive', 'gift', 'game', 'filter', 'files', 'file', 'eraser', 'envelope', 'download', 'direction', 'direction-alt', 'dashboard', 'control-stop', 'control-shuffle', 'control-play', 'control-pause', 'control-forward', 'control-backward', 'cloud', 'cloud-up', 'cloud-down', 'clipboard', 'car', 'calendar', 'book', 'bell', 'basketball', 'bar-chart', 'bar-chart-alt', 'back-right', 'back-left', 'arrows-corner', 'archive', 'anchor', 'align-right', 'align-left', 'align-justify', 'align-center', 'alert', 'alarm-clock', 'agenda', 'write', 'window', 'widgetized', 'widget', 'widget-alt', 'wallet', 'video-clapper', 'video-camera', 'vector', 'themify-logo', 'themify-favicon', 'themify-favicon-alt', 'support', 'stamp', 'split-v-alt', 'slice', 'shortcode', 'shift-right-alt', 'shift-left-alt', 'ruler-alt-2', 'receipt', 'pin2', 'pin-alt', 'pencil-alt2', 'palette', 'more', 'more-alt', 'microphone-alt', 'magnet', 'line-double', 'line-dotted', 'line-dashed', 'layout-width-full', 'layout-width-default', 'layout-width-default-alt', 'layout-tab', 'layout-tab-window', 'layout-tab-v', 'layout-tab-min', 'layout-slider', 'layout-slider-alt', 'layout-sidebar-right', 'layout-sidebar-none', 'layout-sidebar-left', 'layout-placeholder', 'layout-menu', 'layout-menu-v', 'layout-menu-separated', 'layout-menu-full', 'layout-media-right-alt', 'layout-media-right', 'layout-media-overlay', 'layout-media-overlay-alt', 'layout-media-overlay-alt-2', 'layout-media-left-alt', 'layout-media-left', 'layout-media-center-alt', 'layout-media-center', 'layout-list-thumb', 'layout-list-thumb-alt', 'layout-list-post', 'layout-list-large-image', 'layout-line-solid', 'layout-grid4', 'layout-grid3', 'layout-grid2', 'layout-grid2-thumb', 'layout-cta-right', 'layout-cta-left', 'layout-cta-center', 'layout-cta-btn-right', 'layout-cta-btn-left', 'layout-column4', 'layout-column3', 'layout-column2', 'layout-accordion-separated', 'layout-accordion-merged', 'layout-accordion-list', 'ink-pen', 'info-alt', 'help-alt', 'headphone-alt', 'hand-point-up', 'hand-point-right', 'hand-point-left', 'hand-point-down', 'gallery', 'face-smile', 'face-sad', 'credit-card', 'control-skip-forward', 'control-skip-backward', 'control-record', 'control-eject', 'comments-smiley', 'brush-alt', 'youtube', 'vimeo', 'twitter', 'time', 'tumblr', 'skype', 'share', 'share-alt', 'rocket', 'pinterest', 'new-window', 'microsoft', 'list-ol', 'linkedin', 'layout-sidebar-2', 'layout-grid4-alt', 'layout-grid3-alt', 'layout-grid2-alt', 'layout-column4-alt', 'layout-column3-alt', 'layout-column2-alt', 'instagram', 'google', 'github', 'flickr', 'facebook', 'dropbox', 'dribbble', 'apple', 'android', 'save', 'save-alt', 'yahoo', 'wordpress', 'vimeo-alt', 'twitter-alt', 'tumblr-alt', 'trello', 'stack-overflow', 'soundcloud', 'sharethis', 'sharethis-alt', 'reddit', 'pinterest-alt', 'microsoft-alt', 'linux', 'jsfiddle', 'joomla', 'html5', 'flickr-alt', 'email', 'drupal', 'dropbox-alt', 'css3', 'rss', 'rss-alt'
-            );
-
-            $icons_args['homeo-themify-icon'] = array(
-                'name'          => 'homeo-themify-icon',
-                'label'         => esc_html__( 'Themify Icon', 'homeo' ),
-                'labelIcon'     => 'fas fa-user',
-                'prefix'        => 'ti-',
-                'displayPrefix' => 'ti-',
-                'url'           => get_template_directory_uri() . '/css/themify-icons.css',
-                'icons'         => $themify_icons,
-                'ver'           => HOMEO_THEME_VERSION,
-            );
-
-            return $icons_args;
-        }
-
         public function style() {
             wp_enqueue_style('homeo-flaticon',  get_template_directory_uri() . '/css/flaticon.css');
             wp_enqueue_style('themify-icons',  get_template_directory_uri() . '/css/themify-icons.css');
             wp_enqueue_style('line-font',  get_template_directory_uri() . '/css/line-font.css');
         }
 
-        public function modify_controls( $controls_registry ) {
-            // Get existing icons
-            $icons = $controls_registry->get_control( 'icon' )->get_settings( 'options' );
-            
-            $new_icons = $icons;
+        public function custom_icons($icons_args = array()) {
+            $flaticon_icons = array(
+                'flaticon-user', 'flaticon-phone', 'flaticon-magnifiying-glass', 'flaticon-filter', 'flaticon-arrow-down-sign-to-navigate', 'flaticon-location', 'flaticon-hotel', 'flaticon-bath-tub', 'flaticon-bathtub', 'flaticon-minus-front', 'flaticon-heart', 'flaticon-heart-1', 'flaticon-search-house', 'flaticon-seller', 'flaticon-buy-home', 'flaticon-website', 'flaticon-computer', 'flaticon-house', 'flaticon-rating', 'flaticon-customer', 'flaticon-house-1', 'flaticon-shield', 'flaticon-home', 'flaticon-online-meeting', 'flaticon-key', 'flaticon-rental', 'flaticon-play', 'flaticon-twitter', 'flaticon-linkedin', 'flaticon-facebook', 'flaticon-instagram', 'flaticon-bungalow', 'flaticon-cottage', 'flaticon-buildings', 'flaticon-building', 'flaticon-office-building', 'flaticon-check', 'flaticon-paper-plane', 'flaticon-message', 'flaticon-pdf', 'flaticon-tag', 'flaticon-star', 'flaticon-star-1', 'flaticon-walk', 'flaticon-bike', 'flaticon-gallery', 'flaticon-buildings-1', 'flaticon-building-1', 'flaticon-city', 'flaticon-drill', 'flaticon-hammer', 'flaticon-garage', 'flaticon-tools-and-utensils', 'flaticon-before-after', 'flaticon-share', 'flaticon-outbox', 'flaticon-compare', 'flaticon-calendar', 'flaticon-whatsapp', 'flaticon-chat-bubble', 'flaticon-comment', 'flaticon-home-1', 'flaticon-house-3', 'flaticon-house-4', 'flaticon-home-2', 'flaticon-plus', 'flaticon-home-3', 'flaticon-home-4', 'flaticon-layers', 'flaticon-padlock', 'flaticon-logout', 'flaticon-layers-1', 'flaticon-find', 'flaticon-upload', 'flaticon-file', 'flaticon-upload-1', 'flaticon-delete', 'flaticon-edit', 'flaticon-location-1', 'flaticon-video-chat', 'flaticon-location-pin', 'flaticon-close', 'flaticon-google', 'flaticon-time'
+            );
 
-            // Then we set a new list of icons as the options of the icon control
-            $controls_registry->get_control( 'icon' )->set_settings( 'options', $new_icons );
+            $icons_args['homeo-flaticon-icon'] = array(
+                'name'          => 'homeo-flaticon-icon',
+                'label'         => esc_html__( 'Flaticon Icon', 'homeo' ),
+                'labelIcon'     => 'fas fa-user',
+                'prefix'        => '',
+                'displayPrefix' => '',
+                'url'           => get_template_directory_uri() . '/css/flaticon.css',
+                'icons'         => $flaticon_icons,
+                'ver'           => HOMEO_THEME_VERSION,
+            );
+            
+            $themify_icons = array(
+                'ti-volume', 'ti-user', 'ti-unlock', 'ti-unlink', 'ti-trash', 'ti-thought', 'ti-target', 'ti-tag', 'ti-tablet', 'ti-star', 'ti-spray', 'ti-signal', 'ti-shopping-cart', 'ti-shopping-cart-full', 'ti-settings', 'ti-search', 'ti-zoom-in', 'ti-zoom-out', 'ti-cut', 'ti-ruler', 'ti-ruler-pencil', 'ti-ruler-alt', 'ti-bookmark', 'ti-bookmark-alt', 'ti-reload', 'ti-plus', 'ti-pin', 'ti-pencil', 'ti-pencil-alt', 'ti-paint-roller', 'ti-paint-bucket', 'ti-na', 'ti-mobile', 'ti-minus', 'ti-medall', 'ti-medall-alt', 'ti-marker', 'ti-marker-alt', 'ti-arrow-up', 'ti-arrow-right', 'ti-arrow-left', 'ti-arrow-down', 'ti-lock', 'ti-location-arrow', 'ti-link', 'ti-layout', 'ti-layers', 'ti-layers-alt', 'ti-key', 'ti-import', 'ti-image', 'ti-heart', 'ti-heart-broken', 'ti-hand-stop', 'ti-hand-open', 'ti-hand-drag', 'ti-folder', 'ti-flag', 'ti-flag-alt', 'ti-flag-alt-2', 'ti-eye', 'ti-export', 'ti-exchange-vertical', 'ti-desktop', 'ti-cup', 'ti-crown', 'ti-comments', 'ti-comment', 'ti-comment-alt', 'ti-close', 'ti-clip', 'ti-angle-up', 'ti-angle-right', 'ti-angle-left', 'ti-angle-down', 'ti-check', 'ti-check-box', 'ti-camera', 'ti-announcement', 'ti-brush', 'ti-briefcase', 'ti-bolt', 'ti-bolt-alt', 'ti-blackboard', 'ti-bag', 'ti-move', 'ti-arrows-vertical', 'ti-arrows-horizontal', 'ti-fullscreen', 'ti-arrow-top-right', 'ti-arrow-top-left', 'ti-arrow-circle-up', 'ti-arrow-circle-right', 'ti-arrow-circle-left', 'ti-arrow-circle-down', 'ti-angle-double-up', 'ti-angle-double-right', 'ti-angle-double-left', 'ti-angle-double-down', 'ti-zip', 'ti-world', 'ti-wheelchair', 'ti-view-list', 'ti-view-list-alt', 'ti-view-grid', 'ti-uppercase', 'ti-upload', 'ti-underline', 'ti-truck', 'ti-timer', 'ti-ticket', 'ti-thumb-up', 'ti-thumb-down', 'ti-text', 'ti-stats-up', 'ti-stats-down', 'ti-split-v', 'ti-split-h', 'ti-smallcap', 'ti-shine', 'ti-shift-right', 'ti-shift-left', 'ti-shield', 'ti-notepad', 'ti-server', 'ti-quote-right', 'ti-quote-left', 'ti-pulse', 'ti-printer', 'ti-power-off', 'ti-plug', 'ti-pie-chart', 'ti-paragraph', 'ti-panel', 'ti-package', 'ti-music', 'ti-music-alt', 'ti-mouse', 'ti-mouse-alt', 'ti-money', 'ti-microphone', 'ti-menu', 'ti-menu-alt', 'ti-map', 'ti-map-alt', 'ti-loop', 'ti-location-pin', 'ti-list', 'ti-light-bulb', 'ti-talic', 'ti-info', 'ti-infinite', 'ti-id-badge', 'ti-hummer', 'ti-home', 'ti-help', 'ti-headphone', 'ti-harddrives', 'ti-harddrive', 'ti-gift', 'ti-game', 'ti-filter', 'ti-files', 'ti-file', 'ti-eraser', 'ti-envelope', 'ti-download', 'ti-direction', 'ti-direction-alt', 'ti-dashboard', 'ti-control-stop', 'ti-control-shuffle', 'ti-control-play', 'ti-control-pause', 'ti-control-forward', 'ti-control-backward', 'ti-cloud', 'ti-cloud-up', 'ti-cloud-down', 'ti-clipboard', 'ti-car', 'ti-calendar', 'ti-book', 'ti-bell', 'ti-basketball', 'ti-bar-chart', 'ti-bar-chart-alt', 'ti-back-right', 'ti-back-left', 'ti-arrows-corner', 'ti-archive', 'ti-anchor', 'ti-align-right', 'ti-align-left', 'ti-align-justify', 'ti-align-center', 'ti-alert', 'ti-alarm-clock', 'ti-agenda', 'ti-write', 'ti-window', 'ti-widgetized', 'ti-widget', 'ti-widget-alt', 'ti-wallet', 'ti-video-clapper', 'ti-video-camera', 'ti-vector', 'ti-themify-logo', 'ti-themify-favicon', 'ti-themify-favicon-alt', 'ti-support', 'ti-stamp', 'ti-split-v-alt', 'ti-slice', 'ti-shortcode', 'ti-shift-right-alt', 'ti-shift-left-alt', 'ti-ruler-alt-2', 'ti-receipt', 'ti-pin2', 'ti-pin-alt', 'ti-pencil-alt2', 'ti-palette', 'ti-more', 'ti-more-alt', 'ti-microphone-alt', 'ti-magnet', 'ti-line-double', 'ti-line-dotted', 'ti-line-dashed', 'ti-layout-width-full', 'ti-layout-width-default', 'ti-layout-width-default-alt', 'ti-layout-tab', 'ti-layout-tab-window', 'ti-layout-tab-v', 'ti-layout-tab-min', 'ti-layout-slider', 'ti-layout-slider-alt', 'ti-layout-sidebar-right', 'ti-layout-sidebar-none', 'ti-layout-sidebar-left', 'ti-layout-placeholder', 'ti-layout-menu', 'ti-layout-menu-v', 'ti-layout-menu-separated', 'ti-layout-menu-full', 'ti-layout-media-right-alt', 'ti-layout-media-right', 'ti-layout-media-overlay', 'ti-layout-media-overlay-alt', 'ti-layout-media-overlay-alt-2', 'ti-layout-media-left-alt', 'ti-layout-media-left', 'ti-layout-media-center-alt', 'ti-layout-media-center', 'ti-layout-list-thumb', 'ti-layout-list-thumb-alt', 'ti-layout-list-post', 'ti-layout-list-large-image', 'ti-layout-line-solid', 'ti-layout-grid4', 'ti-layout-grid3', 'ti-layout-grid2', 'ti-layout-grid2-thumb', 'ti-layout-cta-right', 'ti-layout-cta-left', 'ti-layout-cta-center', 'ti-layout-cta-btn-right', 'ti-layout-cta-btn-left', 'ti-layout-column4', 'ti-layout-column3', 'ti-layout-column2', 'ti-layout-accordion-separated', 'ti-layout-accordion-merged', 'ti-layout-accordion-list', 'ti-ink-pen', 'ti-info-alt', 'ti-help-alt', 'ti-headphone-alt', 'ti-hand-point-up', 'ti-hand-point-right', 'ti-hand-point-left', 'ti-hand-point-down', 'ti-gallery', 'ti-face-smile', 'ti-face-sad', 'ti-credit-card', 'ti-control-skip-forward', 'ti-control-skip-backward', 'ti-control-record', 'ti-control-eject', 'ti-comments-smiley', 'ti-brush-alt', 'ti-youtube', 'ti-vimeo', 'ti-twitter', 'ti-time', 'ti-tumblr', 'ti-skype', 'ti-share', 'ti-share-alt', 'ti-rocket', 'ti-pinterest', 'ti-new-window', 'ti-microsoft', 'ti-list-ol', 'ti-linkedin', 'ti-layout-sidebar-2', 'ti-layout-grid4-alt', 'ti-layout-grid3-alt', 'ti-layout-grid2-alt', 'ti-layout-column4-alt', 'ti-layout-column3-alt', 'ti-layout-column2-alt', 'ti-instagram', 'ti-google', 'ti-github', 'ti-flickr', 'ti-facebook', 'ti-dropbox', 'ti-dribbble', 'ti-apple', 'ti-android', 'ti-save', 'ti-save-alt', 'ti-yahoo', 'ti-wordpress', 'ti-vimeo-alt', 'ti-twitter-alt', 'ti-tumblr-alt', 'ti-trello', 'ti-stack-overflow', 'ti-soundcloud', 'ti-sharethis', 'ti-sharethis-alt', 'ti-reddit', 'ti-pinterest-alt', 'ti-microsoft-alt', 'ti-linux', 'ti-jsfiddle', 'ti-joomla', 'ti-html5', 'ti-flickr-alt', 'ti-email', 'ti-drupal', 'ti-dropbox-alt', 'ti-css3', 'ti-rss', 'ti-rss-alt'
+            );
+
+            $icons_args['homeo-themify-icon'] = array(
+                'name'          => 'homeo-themify-icon',
+                'label'         => esc_html__( 'Themify Icon', 'homeo' ),
+                'labelIcon'     => 'fas fa-user',
+                'prefix'        => '',
+                'displayPrefix' => '',
+                'url'           => get_template_directory_uri() . '/css/themify-icons.css',
+                'icons'         => $themify_icons,
+                'ver'           => HOMEO_THEME_VERSION,
+            );
+
+            return $icons_args;
         }
         public function render_page_content($post_id) {
             if ( class_exists( 'Elementor\Core\Files\CSS\Post' ) ) {
