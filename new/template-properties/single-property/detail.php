@@ -18,7 +18,7 @@ $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
         <?php if ( $meta_obj->check_post_meta_exist('lot_area') && ($lot_area = $meta_obj->get_post_meta('lot_area')) ) { ?>
             <li>
                 <div class="text"><?php echo esc_html($meta_obj->get_post_meta_title( 'lot_area' )); ?>:</div>
-                <div class="value"><i class="flaticon-minus-front" style="margin-right: 5px;"></i> <?php echo trim($lot_area); ?> <?php echo wp_realestate_get_option('measurement_unit_area'); ?></div>
+                <div class="value"><?php echo trim($lot_area); ?> <?php echo wp_realestate_get_option('measurement_unit_area'); ?></div>
             </li>
         <?php } ?>
         <?php if ( $meta_obj->check_post_meta_exist('home_area') && ($home_area = $meta_obj->get_post_meta('home_area')) ) { ?>
@@ -42,13 +42,13 @@ $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
         <?php if ( $meta_obj->check_post_meta_exist('beds') && ($beds = $meta_obj->get_post_meta('beds')) ) { ?>
             <li>
                 <div class="text"><?php echo esc_html($meta_obj->get_post_meta_title( 'beds' )); ?>:</div>
-                <div class="value"><i class="flaticon-hotel" style="margin-right: 5px;"></i> <?php echo trim($beds); ?></div>
+                <div class="value"><?php echo trim($beds); ?></div>
             </li>
         <?php } ?>
         <?php if ( $meta_obj->check_post_meta_exist('baths') && ($baths = $meta_obj->get_post_meta('baths')) ) { ?>
             <li>
                 <div class="text"><?php echo esc_html($meta_obj->get_post_meta_title( 'baths' )); ?>:</div>
-                <div class="value"><i class="flaticon-bathtub" style="margin-right: 5px;"></i> <?php echo trim($baths); ?></div>
+                <div class="value"><?php echo trim($baths); ?></div>
             </li>
         <?php } ?>
         <?php if ( $meta_obj->check_post_meta_exist('garages') && ($garages = $meta_obj->get_post_meta('garages')) ) { ?>

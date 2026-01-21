@@ -19,16 +19,16 @@ global $post;
         <div class="property-action-detail v4 ali-right">
             <?php homeo_property_display_price($post); ?>
             <?php
-            if ( homeo_get_config('listing_enable_compare', true) ) {
-                $args = array(
-                    'added_icon_class' => 'flaticon-transfer-1',
-                    'add_icon_class' => 'flaticon-transfer-1',
-                );
-                WP_RealEstate_Compare::display_compare_btn($post->ID, $args);
-            }
-            if ( homeo_get_config('listing_enable_favorite', true) ) {
-                WP_RealEstate_Favorite::display_favorite_btn($post->ID);
-            }
+            // if ( homeo_get_config('listing_enable_compare', true) ) {
+            //     $args = array(
+            //         'added_icon_class' => 'flaticon-transfer-1',
+            //         'add_icon_class' => 'flaticon-transfer-1',
+            //     );
+            //     WP_RealEstate_Compare::display_compare_btn($post->ID, $args);
+            // }
+            // if ( homeo_get_config('listing_enable_favorite', true) ) {
+            //     WP_RealEstate_Favorite::display_favorite_btn($post->ID);
+            // }
             ?>
             <?php get_template_part('template-parts/sharebox-property'); ?>
             <?php

@@ -212,15 +212,15 @@ function justhome_enqueue_styles() {
 	// load font
 	wp_enqueue_style( 'justhome-theme-fonts', justhome_get_fonts_url(), array(), null );
 
-	//load font awesome
-	wp_enqueue_style( 'all-awesome', get_template_directory_uri() . '/css/all-awesome.css', array(), '5.11.2' );
-
-	//load font flaticon
+	//load font flaticon first
 	wp_enqueue_style( 'flaticon', get_template_directory_uri() . '/css/flaticon.css', array(), '1.0.0' );
 
-	// load font themify icon
+	//load font awesome second
+	wp_enqueue_style( 'all-awesome', get_template_directory_uri() . '/css/all-awesome.css', array(), '5.11.2' );
+
+	// load font themify icon last (highest priority)
 	wp_enqueue_style( 'themify-icons', get_template_directory_uri() . '/css/themify-icons.css', array(), '1.0.0' );
-			
+				
 	// load animate version 3.6.0
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css', array(), '3.6.0' );
 
@@ -257,19 +257,27 @@ add_action( 'wp_enqueue_scripts', 'justhome_enqueue_styles', 100 );
 
 function justhome_admin_enqueue_styles() {
 
-	//load font awesome
-	wp_enqueue_style( 'all-awesome', get_template_directory_uri() . '/css/all-awesome.css', array(), '5.11.2' );
-
-	//load font flaticon
+	//load font flaticon first
 	wp_enqueue_style( 'flaticon', get_template_directory_uri() . '/css/flaticon.css', array(), '1.0.0' );
 
-	// load font themify icon
+	//load font awesome second
+	wp_enqueue_style( 'all-awesome', get_template_directory_uri() . '/css/all-awesome.css', array(), '5.11.2' );
+
+	// load font themify icon last (highest priority)
 	wp_enqueue_style( 'themify-icons', get_template_directory_uri() . '/css/themify-icons.css', array(), '1.0.0' );
 }
 add_action( 'admin_enqueue_scripts', 'justhome_admin_enqueue_styles', 100 );
 
 function justhome_login_enqueue_styles() {
+	//load font flaticon
+	wp_enqueue_style( 'flaticon', get_template_directory_uri() . '/css/flaticon.css', array(), '1.0.0' );
+
+	//load font awesome
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), '4.5.0' );
+
+	// load font themify icon (highest priority)
+	wp_enqueue_style( 'themify-icons', get_template_directory_uri() . '/css/themify-icons.css', array(), '1.0.0' );
+	
 	wp_enqueue_style( 'justhome-login-style', get_template_directory_uri() . '/css/login-style.css', array(), '1.0' );
 }
 add_action( 'login_enqueue_scripts', 'justhome_login_enqueue_styles', 10 );
