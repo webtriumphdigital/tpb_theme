@@ -14,7 +14,10 @@ global $post;
                 <?php the_title( '<h1 class="property-title">', '</h1>' ); ?>
                 <?php homeo_property_single_display_featured_icon($post); ?>
             </div>
-            <?php homeo_property_display_full_location($post,'no-icon-title',true); ?>
+			<span style="display: flex; align-items: center; gap: 7px;">
+            	<i class="flaticon-location" style="margin-top: 7px;"></i>
+				<?php homeo_property_display_full_location($post,'no-icon-title',true); ?>
+			</span>
         </div>
         <div class="property-action-detail v4 ali-right">
             <?php homeo_property_display_price($post); ?>

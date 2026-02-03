@@ -7,7 +7,7 @@ global $post;
 
 <?php do_action( 'wp_realestate_before_property_content', $post->ID ); ?>
 
-<article <?php post_class('map-item property-grid property-item'); ?> <?php homeo_property_item_map_meta($post); ?> <?php homeo_property_display_gallery($post, 'homeo-property-grid'); ?>>
+<article <?php post_class('map-item property-grid property-item ababil_property_item'); ?> <?php homeo_property_item_map_meta($post); ?> <?php homeo_property_display_gallery($post, 'homeo-property-grid'); ?>>
     <div class="top-info">
         <div class="property-thumbnail-wrapper flex-middle justify-content-center">
             <?php homeo_property_display_image( $post, 'homeo-property-grid' ); ?>
@@ -26,7 +26,6 @@ global $post;
                 }
             ?>
             <div class="bottom-label flex-middle">
-                <?php homeo_property_display_price($post, 'no-icon-title', true); ?>
                 <div class="ali-right">
                     <?php
                         /* if ( homeo_get_config('listing_enable_favorite', true) ) {
@@ -45,14 +44,21 @@ global $post;
         </div>
 
         <div class="property-information">
-        	<?php homeo_property_display_type($post, 'no-icon-title', true); ?>
+            <?php homeo_property_display_price($post, 'no-icon-title', true); ?>
+
 
     		<?php the_title( sprintf( '<h2 class="property-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
             
-			<span style="display: flex; gap: 5px; align-items: center;">
-				<i class="flaticon-location-pin"></i>
-				<?php homeo_property_display_full_location($post); ?>
-			</span>
+
+            <div class="property_location_type">
+                <span class="property_location">
+                    <i class="flaticon-location-pin"></i>
+                    <?php homeo_property_display_full_location($post); ?>
+                </span>
+                <span class="property_type">
+                    <?php homeo_property_display_type($post, 'no-icon-title', true); ?>
+                </span>
+            </div>
 
             <?php
             $meta_obj = WP_RealEstate_Property_Meta::get_instance($post->ID);
